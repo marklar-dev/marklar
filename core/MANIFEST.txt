@@ -1,0 +1,20 @@
+text          deps: -                                        exports: NAME_SEGMENT_RE, NAME_RE, splitLines, unescapeMd, nameKey, isValidName, joinWords, pascalCase, nodeKey, parseHeadingText, stripComment, commentStart, stripInlineMarks, matchText
+cst           deps: text                                     exports: parseCST, printCST, walkCST, tokensOf, inlineTokens
+values        deps: -                                        exports: NULL, TRUE, FALSE, LSError, isList, roundNumber, parseNumberText, isNumeric, isNull, toNumber, toBool, fromBool, normalize, formatNumber, format, typeOf, equals, compare, flatten, valueFromText
+lexer         deps: values                                   exports: tokenize
+parser        deps: lexer, values                            exports: parseExpression, collectNames, parseCellRef, columnName
+transitions   deps: text                                     exports: scanTransitions
+diagnostics   deps: -                                        exports: Severity, DiagnosticBag
+semantic      deps: cst, text, parser, lexer, transitions, diagnostics, values exports: nodeKey, buildSemantic, renderLine
+functions     deps: values                                   exports: CONSTANTS, FUNCTIONS, VOLATILE, isFunction, seededRandom, callFunction
+evaluator     deps: values, functions                        exports: evaluate
+scope         deps: text, values                             exports: Variable, Namespace, RuntimeState
+tables        deps: text, values, parser                     exports: Cell, TableModel, collapse
+elementindex  deps: -                                        exports: DocumentIndex
+dependency    deps: -                                        exports: DependencyGraph
+edittime      deps: evaluator, scope, tables, dependency, diagnostics, functions, values, text exports: runEditTime, EditTimeInterpreter
+formats       deps: -                                        exports: toJSON, toYAML, toXML, serialize, EXTENSIONS
+export        deps: values, formats, lexer, parser, text     exports: exportValue, exportTables, exportScenario, localizeExpr, exportFiles
+document      deps: cst, semantic, edittime, parser, diagnostics, values, text, export exports: MarklarDocument, createDocument
+worker        deps: document                                 exports: serveWorker, CoreClient
+zip           deps: -                                        exports: makeZip

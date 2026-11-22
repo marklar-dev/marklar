@@ -82,11 +82,12 @@ money--
 
 ## Repository contents
 
-| Path            | What's inside                                                     |
-| --------------- | ----------------------------------------------------------------- |
-| `core/`         | Source of the core: parser, interpreter and exporter              |
-| `docs/`         | Documentation and the full markup specification                   |
-| `integrations/` | Integration libraries for playing exported scenarios in your apps |
+| Path            | What's inside                                                       |
+| --------------- | ------------------------------------------------------------------- |
+| `core/`         | Source of the core: parser, interpreter and exporter                |
+| `docs/`         | Documentation and the full markup specification                     |
+| `integrations/` | Integration libraries for playing exported scenarios in your apps * |
+* In progress, not ready yet
 
 > Adjust the paths above to match the actual layout of the repository.
 
